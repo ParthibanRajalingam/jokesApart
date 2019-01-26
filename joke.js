@@ -4,10 +4,10 @@ const assert = require('assert');
 const bodyParser = require('body-parser')
  
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Connection URL
-const url = 'mongodb://parth:shark13@ds213705.mlab.com:13705/jokes';
+const url = 'mongodb://parth:shark1@3ds213705.mlab.com:13705/jokes';
  
 // Database Name
 const dbName = 'jokes';
@@ -18,8 +18,8 @@ app.use(function(req,res,next){
       res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-})
+    next()
+;})
 
 app.get('/joke', (req, res) => {
 
