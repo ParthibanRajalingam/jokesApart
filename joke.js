@@ -50,6 +50,35 @@ MongoClient.connect(url, function(err, db) {
 
 })
 
+app.get('/', (req, res) => {
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("jokes");
+  var min =0;
+
+
+  dbo.collection("sequence").find({}).toArray( function(err, result) {
+    if (err) throw err;
+    console.log(result[0].jokes);
+    var max= result[0].jokes;
+    var randomJokeId = Math.floor(Math.random() * max) + min ;
+
+    dbo.collection("joke").find({"id": randomJokeId}).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+      res.send(result);
+    db.close();
+  });
+  });
+
+
+});
+
+ 
+
+})
+
 
 app.post('/joke', (req, res) =>{
 console.log(req.body);
