@@ -4,7 +4,7 @@ const assert = require('assert');
 const bodyParser = require('body-parser')
  
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Connection URL
 const url = 'mongodb://parth:shark13@ds213705.mlab.com:13705/jokes';
