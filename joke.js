@@ -40,9 +40,9 @@ app.use(function(req,res,next){
          req.connection.remoteAddress || 
          req.socket.remoteAddress || 
          req.connection.socket.remoteAddress;
-         console.log('IP'+ip);
+         
          //Update visitor count
-         updateVisiotorsCount();
+         updateVisiotorsCount(ip);
     }
     catch(error){
     	console.log('Error '+error);
@@ -170,14 +170,14 @@ MongoClient.connect(url, function(err, db) {
 
 });
 
-function updateVisiotorsCount() {
+function updateVisiotorsCount(ip) {
 
 	MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("jokes");
   var myobj = {'date':getDate(),'visitorCount':1};
   var count;
-
+  console.log('IP'+ip);
 //Getting id
     dbo.collection("visitorCount").find({'date':myobj.date}).toArray( function(err, visitorResult) {
     if (err) throw err;
