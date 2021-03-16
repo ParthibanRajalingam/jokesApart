@@ -7,7 +7,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Connection URL
-const url = 'mongodb://parth:shark13@ds213705.mlab.com:13705/jokes';
+//const url = 'mongodb://parth:shark13@ds213705.mlab.com:13705/jokes';
+const url = 'mongodb+srv://parth:shark13@cluster0.x127v.mongodb.net/jokes';
  
 // Database Name
 const dbName = 'jokes';
